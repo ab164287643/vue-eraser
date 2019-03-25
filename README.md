@@ -1,7 +1,7 @@
 # vue-eraser
 
-> 一款用于刮刮乐的组件
-
+> 一款用于刮刮卡的组件
+>github地址 [vue-eraser](https://github.com/ab164287643/vue-eraser)
 ## install
 ```
 npm install --save vue-eraser
