@@ -1,6 +1,6 @@
 import vueEraser from 'components';
 
-const install = function(Vue , opts = {}){
+export const install = function(Vue , opts = {}){
     Vue.component(vueEraser.name , vueEraser);
 }
 
@@ -9,7 +9,4 @@ if(typeof window !== 'undefined' && window.Vue){
     install(window.Vue);
 }
 
-export default {
-    install ,
-    vueEraser
-}
+export default vueEraser;

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="wraper">
+      <h3>测试时当时用的图片链接可能失效请更换图片链接</h3>
       <vue-eraser
       ref="vueEraser"
       :size="25"

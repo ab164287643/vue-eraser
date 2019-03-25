@@ -1,4 +1,4 @@
-import vueEraser from './vue-eraser'
+import vueEraser from 'components/vue-eraser'
 
 vueEraser.install = Vue => Vue.component(vueEraser.name , vueEraser);
 

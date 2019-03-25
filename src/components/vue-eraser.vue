@@ -37,8 +37,8 @@ export default {
             default: "http://cdn.dowebok.com/140/images/1.jpg"
         },
         coverSrc: {//覆盖图片
-            required: true,
             type: String,
+            required: true,
         },
     },
     data (){
@@ -65,50 +65,56 @@ export default {
     created (){
     },
     mounted (){
-        // setTimeout(() => {
-        //     this.init();
-        // }, 20);
-        this.init();
-        this.bindEvent();
+            this.init();
     },
     methods: {
         init (){
             let _this = this;
             let imgEle = this.$refs.eraserImg, 
-                vueEraser= document.querySelector("#" + this.elementId),
+                vueEraser= document.querySelector("#" + _this.elementId),
                 canvasBoundingRect;
-            this.source = imgEle;
-            this.width = imgEle.offsetWidth;
-            this.height = imgEle.offsetHeight;
+            _this.source = imgEle;
+            setTimeout(() => {
+                let imgObj = new Image();
+                    imgObj.src = _this.coverSrc;
+                imgObj.onload = function () {
+                    _this.width = imgEle.offsetWidth;
+                    _this.height = imgEle.offsetHeight;
 
-            this.canvas = document.createElement("canvas");
-            this.canvas.classList.add("eraser-canvas");
-            this.canvas.style.position = "absolute"
-            this.canvas.style.left = "0"
-            this.canvas.style.top = "0"
+                    _this.canvas = document.createElement("canvas");
+                    _this.canvas.classList.add("eraser-canvas");
+                    _this.canvas.style.position = "absolute"
+                    _this.canvas.style.left = "0"
+                    _this.canvas.style.top = "0"
 
-            vueEraser.appendChild(this.canvas);
-            this.canvas.width = this.width;
-            this.canvas.height = this.height;
-            this.ctx = this.canvas.getContext("2d");
-            canvasBoundingRect = this.canvas.getBoundingClientRect();
-            this.canvasPosX = canvasBoundingRect.left;
-            this.canvasPosY = canvasBoundingRect.top;
-
-
-            this.ctx.drawImage(imgEle, 0, 0, this.width, this.height);
-            imgEle.parentNode.removeChild(imgEle);
+                    vueEraser.appendChild(_this.canvas);
+                    _this.canvas.width = _this.width;
+                    _this.canvas.height = _this.height;
+                    _this.ctx = _this.canvas.getContext("2d");
+                    canvasBoundingRect = _this.canvas.getBoundingClientRect();
+                    _this.canvasPosX = canvasBoundingRect.left;
+                    _this.canvasPosY = canvasBoundingRect.top;
+                
+                    _this.ctx.drawImage(imgEle, 0, 0, _this.width, _this.height);
+                    setTimeout(() => {
+                        imgEle.parentNode.removeChild(imgEle);
+                        // prepare context for drawing operations
+                        _this.ctx.globalCompositeOperation = "destination-out";//实现橡皮插的效果，后面画的图将让图层透明
+                        _this.ctx.strokeStyle = 'rgba(255,0,0,255)';
+                        _this.ctx.lineWidth = _this.size;
+                        _this.ctx.lineCap = "round";
+                        _this.bindEvent();
+                    })
+                }
+            },100);
+                
+                
 
             this.colParts = Math.floor(this.width / this.size);
             this.numParts = Math.floor(this.height / this.size) * this.colParts;
             let n = this.numParts;
             while( n -- ) this.parts.push(1);
-
-            // prepare context for drawing operations
-            this.ctx.globalCompositeOperation = "destination-out";//实现橡皮插的效果，后面画的图将让图层透明
-            this.ctx.strokeStyle = 'rgba(255,0,0,255)';
-            this.ctx.lineWidth = this.size;
-            this.ctx.lineCap = "round";
+            
 
             window.onresize = function () {
                 canvasBoundingRect = _this.canvas.getBoundingClientRect();
@@ -250,10 +256,11 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .vue-eraser{
     position: relative;
     width: 100%;
+    user-select: none;
     .img-wraper{
         width: 100%;
         img{

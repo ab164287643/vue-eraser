@@ -1,10 +1,10 @@
 {
   "name": "vue-eraser",
   "description": "a component for eraser",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "author": "chenlei <164287643@qq.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "main":"dist/vue-eraser.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
