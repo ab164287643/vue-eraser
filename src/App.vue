@@ -5,9 +5,9 @@
       <vue-eraser
       ref="vueEraser"
       :size="25"
-      coverSrc="http://cdn.dowebok.com/140/images/2.jpg"
-      :completeFunction="completeFunction"
-      :progressFunction="progressFunction"
+      cover-src="http://cdn.dowebok.com/140/images/2.jpg"
+      :complete-function="completeFunction"
+      :progress-function="progressFunction"
       ></vue-eraser>
       <button class="btn" @click="reset">reset</button>
       <button class="btn" @click="clear">clear</button>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// import vueEaser from "./components/vue-eraser";
+// import vueEaser from "vue-eraser";
 export default {
   name: 'app',
   data () {
@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     completeFunction (ratio){
-      // console.log(ratio);
+      console.log("complete");
     },
     progressFunction (ratio){
-      // console.log(ratio);
+      console.log(ratio);
     },
     reset (){
       this.$refs.vueEraser.reset();

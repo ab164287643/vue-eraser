@@ -59,10 +59,11 @@
         <vue-eraser
         ref="vueEraser"
         :size="50"
+        :complete-ratio="0.5"
         :cover-src="coverSrc"
         :result-src="resultSrc"
-        :completeFunction="completeFunction"
-        :progressFunction="progressFunction"
+        :complete-function="completeFunction"
+        :progress-function="progressFunction"
         >
         </vue-eraser>
         <button class="btn" @click="reset">reset</button>
@@ -84,10 +85,10 @@ new Vue({
     },
     methods: {
         completeFunction (ratio){
-            // console.log(ratio);
+            console.log("complete");
         },
         progressFunction (ratio){
-            // console.log(ratio);
+            console.log(ratio);
         },
         reset (){
             this.$refs.vueEraser.reset();

@@ -98,6 +98,11 @@ export default {
                     _this.ctx.drawImage(imgEle, 0, 0, _this.width, _this.height);
                     setTimeout(() => {
                         imgEle.parentNode.removeChild(imgEle);
+
+                        _this.colParts = Math.floor(_this.width / _this.size);
+                        _this.numParts = Math.floor(_this.height / _this.size) * _this.colParts;
+                        let n = _this.numParts;
+                        while( n -- ) _this.parts.push(1);
                         // prepare context for drawing operations
                         _this.ctx.globalCompositeOperation = "destination-out";//实现橡皮插的效果，后面画的图将让图层透明
                         _this.ctx.strokeStyle = 'rgba(255,0,0,255)';
@@ -108,13 +113,6 @@ export default {
                 }
             },100);
                 
-                
-
-            this.colParts = Math.floor(this.width / this.size);
-            this.numParts = Math.floor(this.height / this.size) * this.colParts;
-            let n = this.numParts;
-            while( n -- ) this.parts.push(1);
-            
 
             window.onresize = function () {
                 canvasBoundingRect = _this.canvas.getBoundingClientRect();
