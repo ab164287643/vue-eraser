@@ -6,7 +6,7 @@
 ```
 npm install --save vue-eraser
 ```
-##Usage
+## Usage
 1、通过import使用
 ```
 import vueEaser from "vue-eraser";
@@ -125,7 +125,7 @@ new Vue({
 </html>
 
 ```
-##property
+## property
 Name|Type|Default|Description
 --|:--:|--:|--:
 element-id|String|vueEraser|该组件外层元素的id
